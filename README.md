@@ -55,7 +55,7 @@ Configure PostgreSQL`
 
 3. **Ensure you have a PostgreSQL instance running (locally or via Docker)**.
 
-`Create a database named sales_ops or update the DSN in cmd/main.go if needed.`
+Create a database named sales_ops or update the DSN in cmd/main.go if needed.
 
 4. **Run the service**:
 `
