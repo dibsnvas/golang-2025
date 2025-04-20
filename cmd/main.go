@@ -7,6 +7,14 @@ import (
     "github.com/dibsnvas/golang-2025/internal/delivery"
     "github.com/dibsnvas/golang-2025/internal/repository"
 )
+// @title Sales & Operations API
+// @version 1.0
+// @description Backend API for managing sales, salaries, and attendance
+// @contact.name API Support
+// @contact.url http://swagger.io
+// @contact.email support@example.com
+// @host localhost:8080
+// @BasePath /
 
 func main() {
     dsn := os.Getenv("DB_DSN")

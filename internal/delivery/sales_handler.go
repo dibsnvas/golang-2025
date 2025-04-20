@@ -21,7 +21,6 @@ func NewSalesHandler(db *gorm.DB) *SalesHandler {
     return &SalesHandler{DB: db}
 }
 
-// ----- createSaleRequest: входная структура для POST /sales -----
 type createSaleRequest struct {
     EmployeeID    uint    `json:"employee_id"`
     ShopID        uint    `json:"shop_id"`
@@ -33,7 +32,17 @@ type createSaleRequest struct {
     } `json:"items"`
 }
 
-// CreateSale обрабатывает POST /sales
+// CreateSale registers a new sales transaction
+// @Summary Create a sales transaction
+// @Description Register a new sales transaction for an employee
+// @Tags Sales
+// @Accept json
+// @Produce json
+// @Param createSaleRequest body createSaleRequest true "Sale data"
+// @Success 201 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 500 {object} map[string]interface{}
+// @Router /sales [post]
 func (h *SalesHandler) CreateSale(c *gin.Context) {
     var req createSaleRequest
     if err := c.ShouldBindJSON(&req); err != nil {
@@ -41,7 +50,6 @@ func (h *SalesHandler) CreateSale(c *gin.Context) {
         return
     }
 
-    // Формируем шапку транзакции
     tx := models.SalesTransaction{
         EmployeeID:      req.EmployeeID,
         ShopID:          req.ShopID,
@@ -49,7 +57,6 @@ func (h *SalesHandler) CreateSale(c *gin.Context) {
         PaymentMethod:   req.PaymentMethod,
     }
 
-    // Считаем итоговую сумму
     var total float64
     var saleItems []models.SaleItem
     for _, item := range req.Items {
@@ -63,13 +70,11 @@ func (h *SalesHandler) CreateSale(c *gin.Context) {
     tx.TotalAmount = total
     tx.SaleItems = saleItems
 
-    // Сохраняем в базе
     if err := h.DB.Create(&tx).Error; err != nil {
         c.JSON(http.StatusInternalServerError, gin.H{"error": err.Error()})
         return
     }
 
-    // Уведомляем сервис "Каталог" об уменьшении склада (асинхронно)
     for _, item := range saleItems {
         go func(it models.SaleItem) {
             payload := map[string]interface{}{
@@ -97,14 +102,21 @@ func (h *SalesHandler) CreateSale(c *gin.Context) {
         }(item)
     }
 
-    // Возвращаем ID транзакции
     c.JSON(http.StatusCreated, gin.H{"transaction_id": tx.ID})
 }
-
-// ----- GetSalesByEmployeeAndDate: GET /sales/employee/:employee_id?date=YYYY-MM-DD -----
-// Показывает, сколько продаж сделал сотрудник за конкретную дату.
+// GetSalesByEmployeeAndDate returns sales for a specific employee on a specific date
+// @Summary Get sales by employee and date
+// @Description Get total sales count and amount by employee ID and date
+// @Tags Sales
+// @Accept json
+// @Produce json
+// @Param employee_id path int true "Employee ID"
+// @Param date query string true "Date in YYYY-MM-DD format"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 500 {object} map[string]interface{}
+// @Router /sales/employee/{employee_id} [get]
 func (h *SalesHandler) GetSalesByEmployeeAndDate(c *gin.Context) {
-    // Параметр пути: /sales/employee/:employee_id
     employeeIDStr := c.Param("employee_id")
     employeeID, err := strconv.ParseUint(employeeIDStr, 10, 64)
     if err != nil {
@@ -112,21 +124,18 @@ func (h *SalesHandler) GetSalesByEmployeeAndDate(c *gin.Context) {
         return
     }
 
-    // Query-параметр: ?date=2025-04-10
     dateStr := c.Query("date")
     if dateStr == "" {
         c.JSON(http.StatusBadRequest, gin.H{"error": "date query param is required, e.g. ?date=2025-04-10"})
         return
     }
 
-    // Парсим дату
     parsedDate, err := time.Parse("2006-01-02", dateStr)
     if err != nil {
         c.JSON(http.StatusBadRequest, gin.H{"error": "invalid date format, use YYYY-MM-DD"})
         return
     }
 
-    // Определяем границы дня: [startOfDay, endOfDay)
     startOfDay := time.Date(parsedDate.Year(), parsedDate.Month(), parsedDate.Day(), 0, 0, 0, 0, parsedDate.Location())
     endOfDay := startOfDay.Add(24 * time.Hour)
 
@@ -140,14 +149,12 @@ func (h *SalesHandler) GetSalesByEmployeeAndDate(c *gin.Context) {
         return
     }
 
-    // Считаем кол-во чеков и сумму total_amount
     countChecks := len(sales)
     var totalAmount float64
     for _, s := range sales {
         totalAmount += s.TotalAmount
     }
 
-    // Возвращаем краткий отчёт
     c.JSON(http.StatusOK, gin.H{
         "employee_id":  employeeID,
         "date":         dateStr,

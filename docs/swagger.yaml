@@ -1,0 +1,245 @@
+basePath: /
+definitions:
+  delivery.PaySalaryRequest:
+    properties:
+      amount:
+        type: number
+      employee_id:
+        type: integer
+      paid_at:
+        description: можно не указывать и взять time.Now()
+        type: string
+      pay_period_end:
+        type: string
+      pay_period_start:
+        description: строка, чтобы потом распарсить "YYYY-MM-DD"
+        type: string
+    type: object
+  delivery.clockOutRequest:
+    properties:
+      employee_id:
+        type: integer
+    type: object
+  delivery.createSaleRequest:
+    properties:
+      employee_id:
+        type: integer
+      items:
+        items:
+          properties:
+            item_id:
+              type: integer
+            price_at_sale:
+              type: number
+            quantity:
+              type: integer
+          type: object
+        type: array
+      payment_method:
+        type: string
+      shop_id:
+        type: integer
+    type: object
+  models.SalaryPayment:
+    properties:
+      amount:
+        type: number
+      employeeID:
+        type: integer
+      id:
+        type: integer
+      paidAt:
+        type: string
+      payPeriodEnd:
+        type: string
+      payPeriodStart:
+        type: string
+    type: object
+host: localhost:8080
+info:
+  contact:
+    email: support@example.com
+    name: API Support
+    url: http://swagger.io
+  description: Backend API for managing sales, salaries, and attendance
+  title: Sales & Operations API
+  version: "1.0"
+paths:
+  /attendance/clock-out:
+    post:
+      consumes:
+      - application/json
+      description: Record the clock-out time for an employee
+      parameters:
+      - description: Employee ID
+        in: body
+        name: clockOutRequest
+        required: true
+        schema:
+          $ref: '#/definitions/delivery.clockOutRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Clock-out for an employee
+      tags:
+      - Attendance
+  /salary/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Retrieve salary payment details using salary ID
+      parameters:
+      - description: Salary ID
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/models.SalaryPayment'
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "404":
+          description: Not Found
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get salary payment by ID
+      tags:
+      - Salary
+  /salary/pay:
+    post:
+      consumes:
+      - application/json
+      description: Record a salary payment for an employee
+      parameters:
+      - description: Salary payment data
+        in: body
+        name: PaySalaryRequest
+        required: true
+        schema:
+          $ref: '#/definitions/delivery.PaySalaryRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Pay salary to an employee
+      tags:
+      - Salary
+  /sales:
+    post:
+      consumes:
+      - application/json
+      description: Register a new sales transaction for an employee
+      parameters:
+      - description: Sale data
+        in: body
+        name: createSaleRequest
+        required: true
+        schema:
+          $ref: '#/definitions/delivery.createSaleRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Create a sales transaction
+      tags:
+      - Sales
+  /sales/employee/{employee_id}:
+    get:
+      consumes:
+      - application/json
+      description: Get total sales count and amount by employee ID and date
+      parameters:
+      - description: Employee ID
+        in: path
+        name: employee_id
+        required: true
+        type: integer
+      - description: Date in YYYY-MM-DD format
+        in: query
+        name: date
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            additionalProperties: true
+            type: object
+        "400":
+          description: Bad Request
+          schema:
+            additionalProperties: true
+            type: object
+        "500":
+          description: Internal Server Error
+          schema:
+            additionalProperties: true
+            type: object
+      summary: Get sales by employee and date
+      tags:
+      - Sales
+swagger: "2.0"

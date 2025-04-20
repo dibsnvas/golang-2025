@@ -21,6 +21,17 @@ func NewAttendanceHandler(db *gorm.DB) *AttendanceHandler {
 type clockInRequest struct {
     EmployeeID uint `json:"employee_id"`
 }
+// ClockIn marks the employee's clock-in time
+// @Summary Clock-in for an employee
+// @Description Record the clock-in time for an employee
+// @Tags Attendance
+// @Accept json
+// @Produce json
+// @Param clockInRequest body clockInRequest true "Employee ID"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 500 {object} map[string]interface{}
+// @Router /attendance/clock-in [post]
 
 func (h *AttendanceHandler) ClockIn(c *gin.Context) {
     var req clockInRequest
@@ -45,7 +56,18 @@ func (h *AttendanceHandler) ClockIn(c *gin.Context) {
 type clockOutRequest struct {
     EmployeeID uint `json:"employee_id"`
 }
-
+// ClockOut marks the employee's clock-out time
+// @Summary Clock-out for an employee
+// @Description Record the clock-out time for an employee
+// @Tags Attendance
+// @Accept json
+// @Produce json
+// @Param clockOutRequest body clockOutRequest true "Employee ID"
+// @Success 200 {object} map[string]interface{}
+// @Failure 400 {object} map[string]interface{}
+// @Failure 404 {object} map[string]interface{}
+// @Failure 500 {object} map[string]interface{}
+// @Router /attendance/clock-out [post]
 func (h *AttendanceHandler) ClockOut(c *gin.Context) {
     var req clockOutRequest
     if err := c.ShouldBindJSON(&req); err != nil {
