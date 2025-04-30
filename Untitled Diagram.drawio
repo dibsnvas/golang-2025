@@ -1,9 +1,151 @@
 <mxfile host="app.diagrams.net" agent="Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/132.0.0.0 Safari/537.36" version="26.2.14">
   <diagram name="Page-1" id="T6MFNF0FEMSJNeKHkgAY">
-    <mxGraphModel>
+    <mxGraphModel dx="1042" dy="521" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
+        <mxCell id="MyC0KELDkmlkKCYpayT1-2" value="AttendanceHandler" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="70" width="140" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-3" value="- DB: *gorm.DB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-2">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-4" value="+ ClockIn()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-2">
+          <mxGeometry y="52" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-5" value="+ ClockOut()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-2">
+          <mxGeometry y="78" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-6" value="EmployeeAttendance" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="70" y="240" width="130" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-7" value="ID: uint" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-6">
+          <mxGeometry y="26" width="130" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-8" value="EmployeeID: uint&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-6">
+          <mxGeometry y="52" width="130" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-32" value="PayPeriodStart" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-6">
+          <mxGeometry y="80" width="130" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-31" value="PayPeriodEnd&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-6">
+          <mxGeometry y="106" width="130" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-35" value="&lt;div&gt;Amount: float64&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-6">
+          <mxGeometry y="132" width="130" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-36" value="&lt;div&gt;PaidAt: time.Time&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-6">
+          <mxGeometry y="158" width="130" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-10" value="SalaryHandler" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="330" y="70" width="140" height="104" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-11" value="- DB: *gorm.DB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-10">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-12" value="+PaySalary()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-10">
+          <mxGeometry y="52" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-13" value="+GetSalaryByID()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-10">
+          <mxGeometry y="78" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-14" value="SalesHandler" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="70" width="210" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-17" value="- DB: *gorm.DB" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-14">
+          <mxGeometry y="26" width="210" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-51" value="+ CreateSale()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-14">
+          <mxGeometry y="52" width="210" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-15" value="+ CreateSale()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-14">
+          <mxGeometry y="78" width="210" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-16" value="+ GetSalesByEmoloyeAndDate()" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-14">
+          <mxGeometry y="104" width="210" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-18" value="SaleItem" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="350" y="490" width="140" height="130" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-19" value="ID&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-18">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-20" value="TransactionID" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-18">
+          <mxGeometry y="52" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-21" value="ItemID, Quantity" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-18">
+          <mxGeometry y="78" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-47" value="&lt;div&gt;PriceAtSale&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-18">
+          <mxGeometry y="104" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-22" value="SalesTransaction" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=50;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="340" y="238" width="140" height="188" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-23" value="ID, EmployeeID, ShopID&lt;br&gt;TransactionTime&lt;div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-22">
+          <mxGeometry y="50" width="140" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-46" value="&lt;div&gt;TotalAmount: float64&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-22">
+          <mxGeometry y="110" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-24" value="PaymentMethod: string" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-22">
+          <mxGeometry y="136" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-25" value="CreateAt, UpdatedAt" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-22">
+          <mxGeometry y="162" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-37" value="SalaryPayment" style="swimlane;fontStyle=0;childLayout=stackLayout;horizontal=1;startSize=26;fillColor=none;horizontalStack=0;resizeParent=1;resizeParentMax=0;resizeLast=0;collapsible=1;marginBottom=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="650" y="300" width="140" height="184" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-41" value="ID: uint" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-37">
+          <mxGeometry y="26" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-42" value="EmployeeID: uint&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-37">
+          <mxGeometry y="52" width="140" height="28" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-38" value="PayPeriodStart" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-37">
+          <mxGeometry y="80" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-39" value="PayPeriodEnd" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-37">
+          <mxGeometry y="106" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-44" value="&lt;div&gt;Amount: float64&lt;/div&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-37">
+          <mxGeometry y="132" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-45" value="&lt;div&gt;PaidAt: time.Time&lt;/div&gt;" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=top;spacingLeft=4;spacingRight=4;overflow=hidden;rotatable=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;whiteSpace=wrap;html=1;" vertex="1" parent="MyC0KELDkmlkKCYpayT1-37">
+          <mxGeometry y="158" width="140" height="26" as="geometry" />
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-48" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;" edge="1" parent="1" source="MyC0KELDkmlkKCYpayT1-6" target="MyC0KELDkmlkKCYpayT1-5">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="90" y="240" as="sourcePoint" />
+            <mxPoint x="250" y="240" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-49" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;entryX=0.566;entryY=0.931;entryDx=0;entryDy=0;entryPerimeter=0;" edge="1" parent="1" target="MyC0KELDkmlkKCYpayT1-13">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="410" y="238" as="sourcePoint" />
+            <mxPoint x="570" y="238" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-50" value="" style="endArrow=open;endFill=1;endSize=12;html=1;rounded=0;entryX=-0.01;entryY=0.054;entryDx=0;entryDy=0;entryPerimeter=0;exitX=1.011;exitY=0.177;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="MyC0KELDkmlkKCYpayT1-12" target="MyC0KELDkmlkKCYpayT1-51">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="480" y="120" as="sourcePoint" />
+            <mxPoint x="620" y="122" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-52" value="Extends" style="endArrow=block;endSize=16;endFill=0;html=1;rounded=0;exitX=0.5;exitY=0;exitDx=0;exitDy=0;" edge="1" parent="1" source="MyC0KELDkmlkKCYpayT1-37" target="MyC0KELDkmlkKCYpayT1-16">
+          <mxGeometry width="160" relative="1" as="geometry">
+            <mxPoint x="690" y="230" as="sourcePoint" />
+            <mxPoint x="850" y="230" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="MyC0KELDkmlkKCYpayT1-53" value="" style="html=1;verticalAlign=bottom;startArrow=circle;startFill=1;endArrow=open;startSize=6;endSize=8;curved=0;rounded=0;entryX=0.471;entryY=1.115;entryDx=0;entryDy=0;entryPerimeter=0;exitX=0.354;exitY=-0.008;exitDx=0;exitDy=0;exitPerimeter=0;" edge="1" parent="1" source="MyC0KELDkmlkKCYpayT1-18" target="MyC0KELDkmlkKCYpayT1-25">
+          <mxGeometry x="-1" y="-45" width="80" relative="1" as="geometry">
+            <mxPoint x="400" y="460" as="sourcePoint" />
+            <mxPoint x="480" y="460" as="targetPoint" />
+            <mxPoint x="-24" y="32" as="offset" />
+          </mxGeometry>
+        </mxCell>
       </root>
     </mxGraphModel>
   </diagram>
